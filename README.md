@@ -8,9 +8,8 @@ Files in this repository include:
 
 * `rmatrix_OCD.csv` = regression matrix used to fit a spatial prediction model to map soil organic carbon density,
 * `mangroves_SOC_points.gpkg` = soil carbon mangrove forests data base in GeoPackage format,
-* `Mangroves_SOCS_0_200cm_100m.tif` = predicted soil organic carbon stock in tonnes/ha at 100 m resolution for depth 0--200 cm,
 
-Input soil data for mangove forests can be can be downloaded from: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/OCYUIT without restrictions.
+Input soil data for mangove forests and predictions at 100 m resolution can also be can be downloaded from: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/OCYUIT without restrictions.
 
 Soil organic carbon under mangrove forests grids at 30 m **can be downloaded from** https://code.earthengine.google.com/?asset=users/gfiske/SOCS/Mangroves_SOC_0_100cm_30m
 
