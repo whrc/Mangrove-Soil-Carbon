@@ -4,7 +4,7 @@ R code and spatial predictions for WHRC-TNC project **mapping soil carbon stocks
 
 ![Global map of SOCS under mangrove forests of the world](https://github.com/whrc/Mangrove-Soil-Carbon/blob/master/img/mSOC_combinedLayout_sm.jpg "Output predictions of soil organic carbon stock under mangrove forests of the world.")
 
-Data can be visualized in as a webmap here: https://storage.googleapis.com/gfiske1/global_mangrove/index_w_slider.html
+Data can be visualized as a web-based map here: https://storage.googleapis.com/gfiske1/global_mangrove/index_w_slider.html
 
 Files in this repository include:
 
