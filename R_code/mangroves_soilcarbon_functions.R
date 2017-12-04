@@ -151,21 +151,26 @@ predict_x <- function(i, tiles, gm, year="00", depths=c(0,30,100,200), out.dir="
     if(year=="14"){ names(m) <- gsub("a2012mfw_30m", "mfw_30m", names(m)) }
     for(j in 1:length(depths)){
       m$DEPTH = depths[j]
-      if(class(gm)=="list"){
+      if(any(class(gm)=="list")){
         xpl = list(NULL)
         for(i in 1:length(gm)){
           xpl[[i]] = predict(gm[[i]], m@data)$predictions
         }
         m@data[,paste0("OCDENS_",j)] = rowMeans(data.frame(xpl))
       } else {
-        if(class(gm)=="randomForest"){
+        if(any(class(gm)=="randomForest")){
           m@data[,paste0("OCDENS_",j)] = predict(gm, m@data)
         } else {
           if(with.se==TRUE){
             ## Too computational at the moment
-            x = predict(gm, m@data[1:1e4,], type="se")
-            m@data[,paste0("OCDENS_",j)] = x$predictions 
-            m@data[,paste0("OCDENS_",j,".sd")] = x$se
+            #x = predict(gm, m@data, quantiles = c(0.05, 0.5, 0.95), all=FALSE)
+            ## TH: does not work for large matrices
+            seq.x = seq.int(by=1e4, from=1, to= nrow(m@data))
+            x = lapply(2:length(seq.x), function(k){predict(gm, m@data[seq.x[k-1] : seq.x[k],], quantiles = c(0.05, 0.5, 0.95), all=FALSE)})
+            x = do.call(rbind, x)
+            m@data[,paste0("OCDENS_",j)] = x[,2]
+            m@data[,paste0("OCDENS_",j,".L")] = ifelse(x[,1]<0, 0, x[,1])
+            m@data[,paste0("OCDENS_",j,".U")] = x[,3]
           } else {
             m@data[,paste0("OCDENS_",j)] = predict(gm, m@data)$predictions 
           }
@@ -173,30 +178,37 @@ predict_x <- function(i, tiles, gm, year="00", depths=c(0,30,100,200), out.dir="
       }
       writeGDAL(m[paste0("OCDENS_",j)], out.tif[j], type="Int16", mvFlag=-32768, options="COMPRESS=DEFLATE")
       if(with.se==TRUE){ 
-        writeGDAL(m[paste0("OCDENS_",j,".sd")], gsub("OCDENS_", "OCDENS.sd_", out.tif[j]), type="Int16", mvFlag=-32768, options="COMPRESS=DEFLATE")
+        writeGDAL(m[paste0("OCDENS_",j,".L")], gsub("OCDENS_", "OCDENS.L_", out.tif[j]), type="Int16", mvFlag=-32768, options="COMPRESS=DEFLATE")
+        writeGDAL(m[paste0("OCDENS_",j,".U")], gsub("OCDENS_", "OCDENS.U_", out.tif[j]), type="Int16", mvFlag=-32768, options="COMPRESS=DEFLATE")
       }
     }
     depthT = c(30,70,100)
     x = list(NULL)
     sx = list(NULL)
+    sy = list(NULL)
     for(k in 1:length(depthT)){
       x[[k]] = rowMeans(m@data[,c(paste0("OCDENS_",k),paste0("OCDENS_",k+1))], na.rm=TRUE)*depthT[k]/100 
       if(with.se==TRUE){
         ## propagated error (http://lectureonline.cl.msu.edu/~mmp/labs/error/e2.htm):
-        sx[[k]] = 1/2*sqrt(m@data[,paste0("OCDENS_",k)]^2+m@data[,paste0("OCDENS_",k+1)]^2)
+        #sx[[k]] = 1/2*sqrt(m@data[,paste0("OCDENS_",k)]^2+m@data[,paste0("OCDENS_",k+1)]^2)
+        sx[[k]] = rowMeans(m@data[,c(paste0("OCDENS_",k,".L"),paste0("OCDENS_",k+1,".L"))], na.rm=TRUE)*depthT[k]/100 
+        sy[[k]] = rowMeans(m@data[,c(paste0("OCDENS_",k,".U"),paste0("OCDENS_",k+1,".U"))], na.rm=TRUE)*depthT[k]/100
       }
     }
     m$SOCS = rowSums(as.data.frame(x[1:2]), na.rm=TRUE)*10
     writeGDAL(m["SOCS"], paste0(out.dir, "/T", tiles@data[i,"ID"], "/dSOCS_0_100cm_year20", year, "_30m_T", tiles@data[i,"ID"], ".tif"), type="Int16", mvFlag=-32768, options="COMPRESS=DEFLATE")
     if(with.se==TRUE){
-      m$SOCS.sd = sqrt(sx[[1]]^2+sx[[2]]^2)*10
-      writeGDAL(m["SOCS.sd"], paste0(out.dir, "/T", tiles@data[i,"ID"], "/dSOCS_sd_0_100cm_year20", year, "_30m_T", tiles@data[i,"ID"], ".tif"), type="Int16", mvFlag=-32768, options="COMPRESS=DEFLATE")
+      #m$SOCS.sd = sqrt(sx[[1]]^2+sx[[2]]^2)*10
+      m$SOCS_L = rowSums(as.data.frame(sx[1:2]), na.rm=TRUE)*10
+      writeGDAL(m["SOCS_L"], paste0(out.dir, "/T", tiles@data[i,"ID"], "/dSOCS_sL_0_100cm_year20", year, "_30m_T", tiles@data[i,"ID"], ".tif"), type="Int16", mvFlag=-32768, options="COMPRESS=DEFLATE")
+      m$SOCS_U = rowSums(as.data.frame(sy[1:2]), na.rm=TRUE)*10
+      writeGDAL(m["SOCS_U"], paste0(out.dir, "/T", tiles@data[i,"ID"], "/dSOCS_sU_0_100cm_year20", year, "_30m_T", tiles@data[i,"ID"], ".tif"), type="Int16", mvFlag=-32768, options="COMPRESS=DEFLATE")
     }
     m$SOCS2 = rowSums(as.data.frame(x[1:3]), na.rm=TRUE)*10
     writeGDAL(m["SOCS2"], paste0(out.dir, "/T", tiles@data[i,"ID"], "/dSOCS_0_200cm_year20", year, "_30m_T", tiles@data[i,"ID"], ".tif"), type="Int16", mvFlag=-32768, options="COMPRESS=DEFLATE")
-    if(with.se==TRUE){
-      m$SOCS2.sd = sqrt(sx[[1]]^2+sx[[2]]^2+sx[[3]]^2)*10
-      writeGDAL(m["SOCS2.sd"], paste0(out.dir, "/T", tiles@data[i,"ID"], "/dSOCS_sd_0_200cm_year20", year, "_30m_T", tiles@data[i,"ID"], ".tif"), type="Int16", mvFlag=-32768, options="COMPRESS=DEFLATE")
-    }
+    #if(with.se==TRUE){
+      #m$SOCS2.sd = sqrt(sx[[1]]^2+sx[[2]]^2+sx[[3]]^2)*10
+      #writeGDAL(m["SOCS2.sd"], paste0(out.dir, "/T", tiles@data[i,"ID"], "/dSOCS_sd_0_200cm_year20", year, "_30m_T", tiles@data[i,"ID"], ".tif"), type="Int16", mvFlag=-32768, options="COMPRESS=DEFLATE")
+    #}
   }
 }
