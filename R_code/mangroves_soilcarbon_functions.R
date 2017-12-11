@@ -1,3 +1,17 @@
+## Prediction of soil organic carbon stocks for world Mangroves at 30 m
+## tom.hengl@gmail.com
+
+## copy horizon values for 3D regression
+hor2xyd = function(x, U="UHDICM", L="LHDICM", treshold.T=15){
+  x$DEPTH <- x[,U] + (x[,L] - x[,U])/2
+  x$THICK <- x[,L] - x[,U]
+  sel = x$THICK < treshold.T
+  ## begin and end of the horizon:
+  x1 = x[!sel,]; x1$DEPTH = x1[,L]
+  x2 = x[!sel,]; x2$DEPTH = x1[,U]
+  y = do.call(rbind, list(x, x1, x2))
+  return(y)
+}
 
 ## expand tiles for 1-2pix ----
 fill.NA.cells <- function(i, tiles, var="MNGUSG_30m", out.path="/data/mangroves/tiled/"){
@@ -211,4 +225,98 @@ predict_x <- function(i, tiles, gm, year="00", depths=c(0,30,100,200), out.dir="
       #writeGDAL(m["SOCS2.sd"], paste0(out.dir, "/T", tiles@data[i,"ID"], "/dSOCS_sd_0_200cm_year20", year, "_30m_T", tiles@data[i,"ID"], ".tif"), type="Int16", mvFlag=-32768, options="COMPRESS=DEFLATE")
     #}
   }
+}
+
+## predict soil properties in parallel:
+predict_parallelP <- function(j, sel, varn, formulaString, rmatrix, idcol, cpus, Nsub=1e4, remove_duplicates=FALSE, pars.ranger){
+  s.train <- rmatrix[!sel==j,]
+  if(remove_duplicates==TRUE){
+    ## TH: optional - check how does model performs without the knowledge of the 3D dimension
+    sel.dup = !duplicated(s.train[,idcol])
+    s.train <- s.train[sel.dup,]
+  }
+  s.test <- rmatrix[sel==j,]
+  n.l <- dim(s.test)[1]
+  if(missing(Nsub)){ Nsub = length(all.vars(formulaString))*50 }
+  if(Nsub>nrow(s.train)){ Nsub = nrow(s.train) }
+  if(missing(pars.ranger)){
+    gm <- quantregRanger(formulaString, s.train[complete.cases(s.train),])
+  } else {
+    pars.ranger$mtry = ifelse(pars.ranger$mtry >= length(all.vars(formulaString)), length(all.vars(formulaString))-1, pars.ranger$mtry)
+    ##  mtry can not be larger than number of variables in data
+    gm <- quantregRanger(formulaString, s.train[complete.cases(s.train),], pars.ranger)
+  }
+  sel.t = complete.cases(s.test)
+  x.pred <- predict(gm, s.test[sel.t,], quantiles = c((1-.682)/2, 0.5, 1-(1-.682)/2))
+  pred <- data.frame(predictions=x.pred[,2], se=(x.pred[,3]-x.pred[,1])/2) 
+  ## export object
+  obs.pred <- as.data.frame(list(s.test[sel.t,varn], pred$predictions, pred$se), col.names=c("Observed", "Predicted", "SE"))
+  obs.pred[,idcol] <- s.test[sel.t,idcol]
+  obs.pred$fold = j
+  return(obs.pred)
+}
+
+cv_numeric <- function(formulaString, rmatrix, nfold, idcol, cpus=1, Log=FALSE, LLO=TRUE, pars.ranger){     
+  varn = all.vars(formulaString)[1]
+  message(paste0("Running ", nfold, "-fold cross validation with model re-fitting"))
+  if(nfold > nrow(rmatrix)){ 
+    stop("'nfold' argument must not exceed total number of points") 
+  }
+  if(sum(duplicated(rmatrix[,idcol]))>0.5*nrow(rmatrix)){
+    if(LLO==TRUE){
+      ## TH: Leave whole locations out
+      ul <- paste(unique(rmatrix[,idcol]))
+      sel.ul <- dismo::kfold(ul, k=nfold)
+      sel <- lapply(1:nfold, function(o){ data.frame(row.names=which(rmatrix[,idcol] %in% ul[sel.ul==o]), x=rep(o, length(which(rmatrix[,idcol] %in% ul[sel.ul==o])))) })
+      sel <- do.call(rbind, sel)
+      sel <- sel[order(as.numeric(row.names(sel))),]
+      message(paste0("Subsetting observations by unique location"))
+    } else {
+      sel <- dismo::kfold(rmatrix, k=nfold, by=rmatrix[,idcol])
+      message(paste0("Subsetting observations by '", idcol, "'"))
+    }
+  } else {
+    sel <- dismo::kfold(rmatrix, k=nfold)
+    message(paste0("Simple subsetting of observations using kfolds"))
+  }
+  if(missing(cpus)){  
+    cpus = nfold 
+  }
+  cpus.a <- parallel::detectCores(all.tests = FALSE, logical = FALSE) 
+  cpus <- ifelse(cpus.a < cpus, cpus.a, cpus)
+  if(cpus>1){
+    snowfall::sfExport("predict_parallelP","idcol","formulaString","rmatrix","sel","varn","pars.ranger")
+    snowfall::sfLibrary(package="plyr", character.only=TRUE)
+    snowfall::sfLibrary(package="ranger", character.only=TRUE)
+    out <- snowfall::sfLapply(1:nfold, function(j){predict_parallelP(j, sel=sel, varn=varn, formulaString=formulaString, rmatrix=rmatrix, idcol=idcol, pars.ranger=pars.ranger)})
+    snowfall::sfStop()
+  } else {
+    out <- lapply(1:nfold, function(j){predict_parallelP(j, sel=sel, varn=varn, formulaString=formulaString, rmatrix=rmatrix, idcol=idcol, pars.ranger=pars.ranger)})
+  }
+  ## calculate mean accuracy:
+  out <- plyr::rbind.fill(out)
+  ME = mean(out$Observed - out$Predicted, na.rm=TRUE)
+  MAE = mean(abs(out$Observed - out$Predicted), na.rm=TRUE)
+  RMSE = sqrt(mean((out$Observed - out$Predicted)^2, na.rm=TRUE))
+  ## Errors of errors:
+  MAE.SE = mean(out$SE - abs(out$Observed - out$Predicted), na.rm=TRUE)
+  ## https://en.wikipedia.org/wiki/Coefficient_of_determination
+  R.squared = 1-var(out$Observed - out$Predicted, na.rm=TRUE)/var(out$Observed, na.rm=TRUE)
+  if(Log==TRUE){
+    logRMSE = sqrt(mean((log1p(out$Observed) - log1p(out$Predicted))^2, na.rm=TRUE))
+    logR.squared = 1-var(log1p(out$Observed) - log1p(out$Predicted), na.rm=TRUE)/var(log1p(out$Observed), na.rm=TRUE)
+    cv.r <- list(out, data.frame(ME=ME, MAE=MAE, RMSE=RMSE, MAE.SE=MAE.SE, R.squared=R.squared, logRMSE=logRMSE, logR.squared=logR.squared)) 
+  } else {
+    cv.r <- list(out, data.frame(ME=ME, MAE=MAE, RMSE=RMSE, MAE.SE=MAE.SE, R.squared=R.squared))
+  }
+  names(cv.r) <- c("CV_residuals", "Summary")
+  return(cv.r)
+}
+
+## correlation plot:
+pfun <- function(x,y, ...){
+  panel.hexbinplot(x,y, ...)  
+  panel.abline(0,1,lty=1,lw=2,col="black")
+  panel.abline(0+RMSE,1,lty=2,lw=2,col="black")
+  panel.abline(0-RMSE,1,lty=2,lw=2,col="black")
 }
