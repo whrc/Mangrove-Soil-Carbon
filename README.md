@@ -1,6 +1,6 @@
 # Mangrove-Soil-Carbon
 
-R code and spatial predictions for WHRC-TNC project **mapping soil carbon stocks under mangrove forests of the world**. Output maps at 30 m resolution are available for download from Google Earth Engine following the links below. To learn more about soil organic carbon mapping visit **[this tutorial](http://gsif.isric.org/doku.php/wiki:soil_organic_carbon)**.
+R code and spatial predictions for WHRC-TNC project [https://doi.org/10.1088/1748-9326/aabe1c](**mapping soil carbon stocks under mangrove forests of the world**). Output maps at 30 m resolution are available for download from Google Earth Engine following the links below. To learn more about soil organic carbon mapping visit **[this tutorial](http://gsif.isric.org/doku.php/wiki:soil_organic_carbon)**.
 
 ![Global map of SOCS under mangrove forests of the world](https://github.com/whrc/Mangrove-Soil-Carbon/blob/master/img/mSOC_combinedLayout_sm.jpg "Output predictions of soil organic carbon stock under mangrove forests of the world.")
 
@@ -17,6 +17,6 @@ Soil organic carbon under mangrove forests grids at 30 m **can also be downloade
 
 Please cite as:
 
-* Sanderman, J., Hengl, T., Fiske, G., Solvik, K., Adame, M., Benson, L., et al., (2017?) **"A global map of mangrove forest soil carbon at 30 m spatial resolution"**. submitted to Environmental Research Letters (Special Issue).
+* Sanderman, J., Hengl, T., Fiske, G., Solvik, K., Adame, M., Benson, L., et al., (2018) [https://doi.org/10.1088/1748-9326/aabe1c](**"A global map of mangrove forest soil carbon at 30 m spatial resolution"**). Environmental Research Letters (in press).
 
 
