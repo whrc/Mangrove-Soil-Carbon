@@ -13,7 +13,7 @@ Files in this repository include:
 
 Input soil data for mangove forests, predictions at 100 m resolution (for 0-1 m and 0-2 m depths) and tiled 30 m resolution predictions can be downloaded from: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/OCYUIT without restrictions.
 
-Soil organic carbon under mangrove forests grids at 30 m **can also be downloaded from** https://code.earthengine.google.com/?asset=users/gfiske/SOCS/Mangroves_SOC_0_100cm_30m
+Soil organic carbon under mangrove forests grids at 30 m **can also be downloaded from** https://code.earthengine.google.com/?asset=users/gfiske/SOCS/Mangroves_SOC_0_100cm_30m_Dec_15_2017
 
 Please cite as:
 
