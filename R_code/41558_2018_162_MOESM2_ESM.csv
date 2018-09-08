@@ -1,0 +1,552 @@
+Latitude,Longitude,CES,SOC (mg cm-3),Country,Source
+26.48,-82.15,CT,81.47,USA,This study
+26.02,-81.73,CT,76.75,USA,This study
+25.93,-81.65,CT,54.36,USA,This study
+25.36,-81.07,CT,52.78,USA,This study
+25.3,-80.96,CT,48.84,USA,This study
+25.21,-80.53,CT,58.77,USA,This study
+25.2,-80.46,CT,41.94,USA,This study
+25.2,-80.64,CT,61.51,USA,This study
+25.18,-80.91,CT,72.8,USA,This study
+13.19,-88.33,LG,24.95,El Salvador,This study
+13.22,-88.46,LG,21.14,El Salvador,This study
+13.26,-88.79,LG,18.07,El Salvador,This study
+9.83,-84.92,BR,32.99,Costa Rica,This study
+9.83,-84.92,BR,24.46,Costa Rica,This study
+9.82,-84.91,BR,28.75,Costa Rica,This study
+9.59,-82.6,CP,41.22,Costa Rica,This study
+9.59,-82.6,CP,46.98,Costa Rica,This study
+9.59,-82.6,CP,44.38,Costa Rica,This study
+8.32,-82.44,ET,23.82,Panama,This study
+8.31,-82.28,ET,28.96,Panama,This study
+8.28,-82.35,ET,34.52,Panama,This study
+-0.64,-47.56,DT,20.37,Brazil,This study
+-0.67,-48.03,DT,17.2,Brazil,This study
+-0.7,-47.12,DT,16.64,Brazil,This study
+-13.49,-38.91,CT,24.07,Brazil,This study
+-13.47,-38.91,CT,37.01,Brazil,This study
+-13.45,-38.89,CT,33.57,Brazil,This study
+-17.79,-39.33,DT,30.01,Brazil,This study
+-17.77,-39.33,DT,19.42,Brazil,This study
+-17.77,-39.22,DT,20.47,Brazil,This study
+-24.69,-47.51,LG,27.48,Brazil,This study
+-25.02,-47.92,LG,23.26,Brazil,This study
+-25.23,-48.02,LG,28.99,Brazil,This study
+-25.87,-48.63,ET,16.24,Brazil,This study
+-26.18,-48.62,ET,21.36,Brazil,This study
+-27.45,-48.52,ET,20.27,Brazil,This study
+19.49,-87.7,CT,79,Mexico,Adame et al. 2013
+19.65,-87.45,CT,66,Mexico,Adame et al. 2013
+19.7,-87.47,CT,32,Mexico,Adame et al. 2013
+19.78,-87.48,CT,52,Mexico,Adame et al. 2013
+19.82,-87.5,CT,41,Mexico,Adame et al. 2013
+19.84,-87.48,CT,42,Mexico,Adame et al. 2013
+19.86,-87.46,CT,31,Mexico,Adame et al. 2013
+18.25,-87.87,CT,125.55,Mexico,Adame et al. 2013
+18.49,-88.32,CT,72.72,Mexico,Adame et al. 2013
+20.85,-90.38,CT,85.68,Mexico,Adame et al. 2013
+20.85,-86.88,CT,48.36,Mexico,Adame et al. 2013
+21.26,-89.75,CT,52.61,Mexico,Adame et al. 2013
+21.26,-89.68,CT,101.17,Mexico,Adame et al. 2013
+21.39,-88.89,CT,94.72,Mexico,Adame et al. 2013
+21.6,-88.14,CT,20.7,Mexico,Adame et al. 2013
+15.13,-92.76,LG,73,Mexico,Adame et al. 2015
+15.16,-92.78,LG,76.92,Mexico,Adame et al. 2015
+15.17,-92.83,LG,36.56,Mexico,Adame et al. 2015
+15.18,-92.85,LG,74.08,Mexico,Adame et al. 2015
+15.18,-92.81,LG,89.68,Mexico,Adame et al. 2015
+15.18,-92.84,LG,101.16,Mexico,Adame et al. 2015
+15.2,-92.89,LG,53.2,Mexico,Adame et al. 2015
+19.49,-87.7,CT,80.35,Mexico,Adame et al. 2013
+19.7,-87.47,CT,54.96,Mexico,Adame et al. 2013
+19.65,-87.45,CT,87.62,Mexico,Adame et al. 2013
+19.78,-87.48,CT,66.81,Mexico,Adame et al. 2013
+19.86,-87.46,CT,36.85,Mexico,Adame et al. 2013
+19.84,-87.48,CT,69.57,Mexico,Adame et al. 2013
+19.82,-87.5,CT,55.5,Mexico,Adame et al. 2013
+-21.97,113.95,ET,33.57,Australia,Alongi et al. 2000
+-20.72,116.62,ET,23.4,Australia,Alongi et al. 2000
+-20.72,116.62,ET,12.39,Australia,Alongi et al. 2000
+-21.97,113.95,ET,30.8,Australia,Alongi et al. 2000
+-20.38,118.62,ET,17.86,Australia,Alongi et al. 2000
+-20.38,118.62,ET,19.35,Australia,Alongi et al. 2000
+10.36,99.15,ET,17.55,Thailand,Alongi et al. 2001
+10.36,99.15,ET,20.18,Thailand,Alongi et al. 2001
+10.36,99.15,ET,24.97,Thailand,Alongi et al. 2001
+10.36,99.15,ET,22.05,Thailand,Alongi et al. 2001
+4.85,100.63,ET,33.61,Malaysia,Alongi et al. 2004
+4.86,100.62,ET,45.36,Malaysia,Alongi et al. 2004
+4.84,100.62,ET,22.94,Malaysia,Alongi et al. 2004
+24.39,117.91,ET,15.56,China,Alongi et al. 2005
+24.39,117.91,ET,12.35,China,Alongi et al. 2005
+24.39,117.91,ET,14.4,China,Alongi et al. 2005
+-4.24,119.62,ET,49.07,Indonesia,Alongi et al. 2008
+-5.5,105.25,ET,23.84,Indonesia,Alongi et al. 2008
+-5.5,105.25,ET,47.21,Indonesia,Alongi et al. 2008
+-5.5,105.25,ET,16.16,Indonesia,Alongi et al. 2008
+-9.17,125.4,DT,17.39,Timor-Leste,Alongi et al. 2012
+-9.17,125.27,DT,15.01,Timor-Leste,Alongi et al. 2012
+-9.17,125.27,DT,20.53,Timor-Leste,Alongi et al. 2012
+-8.57,125.47,ET,37.74,Timor-Leste,Alongi et al. 2012
+-9.17,125.75,DT,11.29,Timor-Leste,Alongi et al. 2012
+-9.17,125.75,DT,22.3,Timor-Leste,Alongi et al. 2012
+-8.53,125.7,ET,23.84,Timor-Leste,Alongi et al. 2012
+-4.37,39.5,ET,22.39,Kenya,Andreetta et al. 2014
+-4.37,39.5,ET,29.04,Kenya,Andreetta et al. 2014
+-4.37,39.5,ET,20.78,Kenya,Andreetta et al. 2014
+-4.37,39.5,ET,10.58,Kenya,Andreetta et al. 2014
+-4.37,39.5,ET,39.2,Kenya,Andreetta et al. 2014
+12.29,-16.25,DT,15.38,Guinea-Bissau,Andreetta et al. 2016
+11.92,-15.26,DT,8.58,Guinea-Bissau,Andreetta et al. 2016
+4.93,115.23,DT,20.28,Malaysia,Arianto et al. 2015
+4.93,115.23,DT,23.29,Malaysia,Arianto et al. 2015
+4.93,115.23,DT,18.38,Malaysia,Arianto et al. 2015
+4.93,115.23,DT,18.7,Malaysia,Arianto et al. 2015
+4.93,115.23,DT,30.31,Malaysia,Arianto et al. 2015
+4.93,115.23,DT,26.15,Malaysia,Arianto et al. 2015
+4.93,115.23,DT,16.29,Malaysia,Arianto et al. 2015
+4.93,115.23,DT,17.81,Malaysia,Arianto et al. 2015
+19.61,110.79,ET,9.99,China,Bao et al. 2013
+10.81,-68.33,CT,8.19,Venezuela,Barreto et al. 2016
+10.86,-68.32,CT,39,Venezuela,Barreto et al. 2016
+10.89,-68.25,CT,31.2,Venezuela,Barreto et al. 2016
+10.92,-68.36,CT,41.6,Venezuela,Barreto et al. 2016
+10.93,-68.37,CT,44,Venezuela,Barreto et al. 2016
+10.93,-68.35,CT,39.1,Venezuela,Barreto et al. 2016
+13.07,-87.22,ET,27.65,Honduras,Bhomia et al. 2016
+16.09,-86.89,CT,50.72,Honduras,Bhomia et al. 2016
+16.09,-86.92,CT,70.04,Honduras,Bhomia et al. 2016
+16.1,-86.91,CT,47.17,Honduras,Bhomia et al. 2016
+16.11,-86.94,CT,39.73,Honduras,Bhomia et al. 2016
+16.12,-86.9,CT,53.37,Honduras,Bhomia et al. 2016
+16.4,-86.39,CT,40.36,Honduras,Bhomia et al. 2016
+16.4,-86.4,CT,56.36,Honduras,Bhomia et al. 2016
+16.42,-85.94,CT,23.32,Honduras,Bhomia et al. 2016
+16.45,-85.86,CT,40.27,Honduras,Bhomia et al. 2016
+13.35,-87.45,ET,12.5,Honduras,Bhomia et al. 2016
+13.37,-87.48,ET,29.59,Honduras,Bhomia et al. 2016
+13.45,-87.6,ET,33.63,Honduras,Bhomia et al. 2016
+15.78,-87.6,CP,19.07,Honduras,Bhomia et al. 2016
+15.82,-87.58,CP,41.34,Honduras,Bhomia et al. 2016
+15.83,-87.6,CP,38.19,Honduras,Bhomia et al. 2016
+15.87,-87.64,CP,40.45,Honduras,Bhomia et al. 2016
+15.89,-87.64,CP,51.45,Honduras,Bhomia et al. 2016
+20.39,86.73,DT,11.3,India,Bhomia et al. 2016
+20.48,86.73,DT,11.22,India,Bhomia et al. 2016
+27.86,-97.06,LG,8.04,USA,Bianchi et al. 2013
+27.86,-97.06,LG,8.38,USA,Bianchi et al. 2013
+27.94,-97.03,LG,13.41,USA,Bianchi et al. 2013
+27.94,-97.03,LG,15.94,USA,Bianchi et al. 2013
+25.36,-81.08,CT,52.34,USA,Breithaupt et al. 2014
+25.36,-81.08,CT,38.5,USA,Breithaupt et al. 2014
+25.36,-81.08,CT,44.87,USA,Breithaupt et al. 2014
+25.36,-81.08,CT,53.03,USA,Breithaupt et al. 2014
+25.36,-81.08,CT,41.3,USA,Breithaupt et al. 2014
+-18.5,146.25,ET,22.05,Australia,Brunskill et al. 2002
+-18.5,146.25,ET,35.46,Australia,Brunskill et al. 2002
+-18.5,146.25,ET,24.16,Australia,Brunskill et al. 2002
+-4.79,136.85,DT,36.87,Indonesia,Brunskill et al. 2004
+-4.87,136.97,DT,21.79,Indonesia,Brunskill et al. 2004
+-4.86,136.96,DT,20.73,Indonesia,Brunskill et al. 2004
+-4.84,136.97,DT,24.38,Indonesia,Brunskill et al. 2004
+25.2,-80.64,CT,50,USA,Castañeda-Moya et al. 2013
+25.22,-80.65,CT,60.7,USA,Castañeda-Moya et al. 2013
+25.23,-80.52,CT,51.6,USA,Castañeda-Moya et al. 2013
+25.36,-81.08,CT,40.6,USA,Castañeda-Moya et al. 2013
+25.38,-81.03,CT,52.9,USA,Castañeda-Moya et al. 2013
+25.41,-80.96,CT,41.5,USA,Castañeda-Moya et al. 2013
+21.63,88.33,DT,11.77,India,Chatterjee et al. 2009
+21.63,88.33,DT,11.98,India,Chatterjee et al. 2009
+21.63,88.33,DT,10.44,India,Chatterjee et al. 2009
+22.53,114,ET,1.4,China,Chen et al 2012
+22.53,114,ET,1.5,China,Chen et al 2012
+22.53,114,ET,1.7,China,Chen et al 2012
+5.33,162.94,HI,19.22,Korsae,Cormier et al. 2015
+5.33,162.94,HI,19.15,Korsae,Cormier et al. 2015
+5.33,162.94,HI,14.04,Korsae,Cormier et al. 2015
+6.87,158.31,HI,36.94,Pohnpei,Cormier et al. 2015
+6.87,158.31,HI,58.57,Pohnpei,Cormier et al. 2015
+6.87,158.31,HI,52.32,Pohnpei,Cormier et al. 2015
+18.6,-91.98,CP,42.1,Mexico,Coronado-Molina et al. 2012
+18.6,-91.98,CP,41.7,Mexico,Coronado-Molina et al. 2012
+18.6,-91.98,CP,58.7,Mexico,Coronado-Molina et al. 2012
+25.18,-80.7,CT,96.2,USA,Coronado-Molina et al. 2012
+25.18,-80.7,CT,95.2,USA,Coronado-Molina et al. 2012
+25.18,-80.7,CT,36.4,USA,Coronado-Molina et al. 2012
+18.65,-91.76,CP,41.7,Mexico,Day et al. 1996
+18.65,-91.76,CP,58.7,Mexico,Day et al. 1996
+-21.9,166.07,ET,29.4,New Caledonia,Deborde et al. 2015
+-21.9,166.07,ET,42.79,New Caledonia,Deborde et al. 2015
+0.62,-80.01,LG,78.75,Ecuador,DelVecchia et al. 2014
+0.62,-80.01,LG,70.62,Ecuador,DelVecchia et al. 2014
+0.62,-80.01,LG,55,Ecuador,DelVecchia et al. 2014
+22.26,89.27,DT,15.55,Bangladesh,Donato et al. 2011
+22.32,89.63,DT,16.01,Bangladesh,Donato et al. 2011
+5.35,162.96,CT,46.67,Fed. States of Micronesia,Donato et al. 2011
+5.28,162.96,CT,50.03,Fed. States of Micronesia,Donato et al. 2011
+5.33,162.94,CT,29.19,Fed. States of Micronesia,Donato et al. 2011
+5.28,162.91,CT,51.35,Fed. States of Micronesia,Donato et al. 2011
+9.56,138.18,CT,41.72,Fed. States of Micronesia,Donato et al. 2011
+9.51,138.15,CT,50.2,Fed. States of Micronesia,Donato et al. 2011
+9.55,138.1,CT,51.26,Fed. States of Micronesia,Donato et al. 2011
+9.54,138.09,CT,41.55,Fed. States of Micronesia,Donato et al. 2011
+9.59,138.13,CT,52.08,Fed. States of Micronesia,Donato et al. 2011
+-2.74,111.74,ET,28.13,Indonesia,Donato et al. 2011
+-2.85,111.74,ET,29.06,Indonesia,Donato et al. 2011
+-2.78,111.7,ET,34.24,Indonesia,Donato et al. 2011
+-2.86,111.73,ET,31.98,Indonesia,Donato et al. 2011
+-2.74,111.71,ET,23.4,Indonesia,Donato et al. 2011
+-7.71,108.96,ET,31.46,Indonesia,Donato et al. 2011
+-7.72,108.97,ET,24.38,Indonesia,Donato et al. 2011
+1.75,124.74,CT,66.1,Indonesia,Donato et al. 2011
+1.69,124.96,CT,59.56,Indonesia,Donato et al. 2011
+1.74,124.75,CT,57.9,Indonesia,Donato et al. 2011
+1.57,124.8,CT,75.74,Indonesia,Donato et al. 2011
+1.3,124.51,CT,75.15,Indonesia,Donato et al. 2011
+1.37,124.55,CT,72.58,Indonesia,Donato et al. 2011
+7.35,134.54,CT,46,Palau,Donato et al. 2011
+9.54,138.09,CT,63.16,Fed. States of Micronesia,Donato et al. 2012
+9.56,138.18,CT,60.26,Fed. States of Micronesia,Donato et al. 2012
+9.51,138.15,CT,58.27,Fed. States of Micronesia,Donato et al. 2012
+9.55,138.1,CT,87.49,Fed. States of Micronesia,Donato et al. 2012
+9.59,138.13,CT,107.76,Fed. States of Micronesia,Donato et al. 2012
+7.35,134.54,CT,44.31,Palau,Donato et al. 2012
+7.38,134.51,CT,56.33,Palau,Donato et al. 2012
+7.58,134.63,CT,59.39,Palau,Donato et al. 2012
+28.53,-80.7,LG,22,USA,Doughty et al. 2016
+28.53,-80.7,LG,18,USA,Doughty et al. 2016
+28.53,-80.7,LG,21.67,USA,Doughty et al. 2016
+28.53,-80.7,LG,14.33,USA,Doughty et al. 2016
+10.4,106.88,DT,19.11,Vietnam,Dung et al. 2016
+10.4,106.88,DT,24.88,Vietnam,Dung et al. 2016
+10.4,106.88,DT,24.85,Vietnam,Dung et al. 2016
+10.4,106.88,DT,23.65,Vietnam,Dung et al. 2016
+15.07,-92.76,LG,30.98,Mexico,Ezcurra et al. 2016
+24.25,-110.31,CT,91.61,Mexico,Ezcurra et al. 2016
+24.25,-110.31,CT,88.04,Mexico,Ezcurra et al. 2016
+24.25,-110.31,CT,70,Mexico,Ezcurra et al. 2016
+24.31,-110.32,CT,7.52,Mexico,Ezcurra et al. 2016
+24.32,-110.32,CT,140,Mexico,Ezcurra et al. 2016
+24.55,-111.74,CT,41.57,Mexico,Ezcurra et al. 2016
+24.58,-111.8,CT,20.53,Mexico,Ezcurra et al. 2016
+25.16,121.42,ET,15.68,Taiwan,Fan et al. 2012
+19.25,72.83,ET,6.7,India,Fernandes et al. 2011
+19.25,72.83,ET,12.94,India,Fernandes et al. 2011
+17.22,73.4,ET,14.98,India,Fernandes et al. 2014
+17.22,73.4,ET,17.35,India,Fernandes et al. 2014
+-23.94,-46.24,ET,52.45,Brazil,Ferreira et al. 2010
+-24,-46.12,ET,33.82,Brazil,Ferreira et al. 2010
+-24,-46.12,ET,51.82,Brazil,Ferreira et al. 2010
+-24,-46.12,ET,63.22,Brazil,Ferreira et al. 2010
+-24,-46.12,ET,47.44,Brazil,Ferreira et al. 2010
+-24,-46.12,ET,64.07,Brazil,Ferreira et al. 2010
+6.86,158.29,CT,65.34,Fed. States of Micronesia,Fujimoto et al. 1999
+6.86,158.29,CT,54.18,Fed. States of Micronesia,Fujimoto et al. 1999
+6.86,158.29,CT,68.15,Fed. States of Micronesia,Fujimoto et al. 1999
+24.32,-110.32,ET,30.47,Mexico,Giani et al. 1996
+24.32,-110.32,ET,60.3,Mexico,Giani et al. 1996
+24.32,-110.32,ET,46.49,Mexico,Giani et al. 1996
+24.32,-110.32,ET,64.17,Mexico,Giani et al. 1996
+21.22,-89.75,CT,27.96,Mexico,Gonneea et al. 2004
+20.24,106.52,DT,12.23,Vietnam,Grellier et al. 2017
+20.24,106.52,DT,10.72,Vietnam,Grellier et al. 2017
+22.25,-105.55,LG,32.82,Mexico,Gutierrez et al. 2016
+22.25,-105.55,LG,32.09,Mexico,Gutierrez et al. 2016
+3.33,101.23,DT,152.69,Malaysia,Hemati et al. 2015
+3.33,101.23,DT,114.44,Malaysia,Hemati et al. 2015
+3.33,101.23,DT,80.19,Malaysia,Hemati et al. 2015
+3.67,100.97,DT,140.73,Malaysia,Hemati et al. 2015
+3.67,100.97,DT,140.25,Malaysia,Hemati et al. 2015
+3.67,100.97,DT,120.42,Malaysia,Hemati et al. 2015
+29.12,-90.18,DT,15.93,USA,Henry & Twilley 2013
+29.11,-90.21,DT,16.33,USA,Henry & Twilley 2013
+24.4,124.15,CT,43.16,Japan,Higashi & Shinagawa 1985
+24.4,124.15,CT,50.79,Japan,Higashi & Shinagawa 1985
+24.4,124.15,CT,44.71,Japan,Higashi & Shinagawa 1985
+3.33,101.24,DT,48.8,Malaysia,Hossain 2014
+-13.45,48.67,ET,29.64,Madagascar,Jones et al. 2014
+-13.45,48.67,ET,24.14,Madagascar,Jones et al. 2014
+-13.45,48.67,ET,16.52,Madagascar,Jones et al. 2014
+7.35,134.54,HI,36.67,"Airai, Palau",Kauffman et al. 2011
+7.35,134.54,HI,44.85,"Airai, Palau",Kauffman et al. 2011
+7.35,134.54,HI,51.15,"Airai, Palau",Kauffman et al. 2011
+9.59,138.13,HI,40,"Yap, Micronesia",Kauffman et al. 2011
+9.59,138.13,HI,35.64,"Yap, Micronesia",Kauffman et al. 2011
+9.59,138.13,HI,50.29,"Yap, Micronesia",Kauffman et al. 2011
+19.69,-71.72,CT,41.06,Dominican Republic,Kauffman et al. 2014
+19.69,-71.72,CT,41.01,Dominican Republic,Kauffman et al. 2014
+19.69,-71.72,CT,32.52,Dominican Republic,Kauffman et al. 2014
+19.69,-71.72,CT,26.22,Dominican Republic,Kauffman et al. 2014
+19.69,-71.72,CT,52.55,Dominican Republic,Kauffman et al. 2014
+19.69,-71.72,CT,44.95,Dominican Republic,Kauffman et al. 2014
+19.69,-71.72,CT,53.37,Dominican Republic,Kauffman et al. 2014
+19.69,-71.72,CT,38.7,Dominican Republic,Kauffman et al. 2014
+19.69,-71.72,CT,46.81,Dominican Republic,Kauffman et al. 2014
+18.57,-92.67,DT,12.5,Mexico,Kauffman et al. 2016
+18.57,-92.67,CP,60,Mexico,Kauffman et al. 2016
+18.57,-92.67,CP,36,Mexico,Kauffman et al. 2016
+18.57,-92.67,CP,42,Mexico,Kauffman et al. 2016
+18.57,-92.67,CP,40,Mexico,Kauffman et al. 2016
+18.57,-92.67,CP,40,Mexico,Kauffman et al. 2016
+18.57,-92.67,CP,40,Mexico,Kauffman et al. 2016
+26.19,127.68,ET,5.73,Japan,Khan et al. 2007
+16.28,-61.56,CT,58.95,French Guiana/Guadeloupe,Lallier-Verges et al. 1998
+16.28,-61.56,CT,65.75,French Guiana/Guadeloupe,Lallier-Verges et al. 1998
+-21.71,165.82,CT,47.49,New Caledonia,Leopold et al. 2015
+-21.71,165.82,CT,44.1,New Caledonia,Leopold et al. 2015
+-38.37,145.33,BR,13.86,Australia,Livesley & Andrusiak 2012
+-38.37,145.33,BR,14.64,Australia,Livesley & Andrusiak 2012
+-38.37,145.33,BR,14.4,Australia,Livesley & Andrusiak 2012
+21.57,109.76,ET,13.91,China,Lu et al. 2014
+21.57,109.76,ET,11.64,China,Lu et al. 2014
+22.53,114.01,ET,4,China,Lunstrum & Chen 2014
+22.53,114.01,ET,14.53,China,Lunstrum & Chen 2014
+22.53,114.01,ET,4.4,China,Lunstrum & Chen 2014
+22.53,114.01,ET,4.3,China,Lunstrum & Chen 2014
+-7.85,39.23,DT,16.43,Tanzania,Lupembe 2014
+-6.15,39.2,ET,25.39,Tanzania,Machiwa 1998
+-6.15,39.2,ET,20.38,Tanzania,Machiwa 1998
+-6.15,39.2,ET,19.81,Tanzania,Machiwa 1998
+-6.15,39.2,ET,29.4,Tanzania,Machiwa 1998
+-6.15,39.2,ET,38.46,Tanzania,Machiwa 1998
+7.41,134.51,HI,36.72,Palau,MacKenzie et al. 2016
+7.41,134.51,HI,57.13,Palau,MacKenzie et al. 2016
+7.58,134.63,HI,53.34,Palau,MacKenzie et al. 2016
+7.38,134.51,HI,71.12,Palau,MacKenzie et al. 2016
+7.38,134.51,HI,60.18,Palau,MacKenzie et al. 2016
+8.65,105.11,DT,27.3,Vietnam,MacKenzie et al. 2016
+8.65,105.11,DT,37.4,Vietnam,MacKenzie et al. 2016
+8.65,105.11,DT,61.5,Vietnam,MacKenzie et al. 2016
+8.65,105.11,DT,21.6,Vietnam,MacKenzie et al. 2016
+8.65,105.11,DT,16.32,Vietnam,MacKenzie et al. 2016
+8.65,105.11,DT,18.98,Vietnam,MacKenzie et al. 2016
+10.48,106.94,DT,26.24,Vietnam,MacKenzie et al. 2016
+10.48,106.94,DT,16.96,Vietnam,MacKenzie et al. 2016
+7.63,134.62,HI,59.7,Palau,MacKenzie et al. 2016
+7.57,134.54,HI,42.48,Palau,MacKenzie et al. 2016
+7.57,134.54,HI,89.96,Palau,MacKenzie et al. 2016
+7.4,134.59,HI,34.3,Palau,MacKenzie et al. 2016
+7.4,134.59,HI,60.48,Palau,MacKenzie et al. 2016
+7.63,134.62,HI,45.3,Palau,MacKenzie et al. 2016
+5.4,-52.9,ET,15.74,French Guiana/Guadeloupe,Marchand 2017
+5.4,-52.9,ET,23.73,French Guiana/Guadeloupe,Marchand 2017
+5.36,-52.87,DT,19.02,French Guiana/Guadeloupe,Marchand et al. 2003
+5.36,-52.87,DT,5.9,French Guiana/Guadeloupe,Marchand et al. 2003
+5.36,-52.87,DT,12.6,French Guiana/Guadeloupe,Marchand et al. 2003
+5.36,-52.87,DT,12.48,French Guiana/Guadeloupe,Marchand et al. 2003
+5.34,-52.85,DT,12.5,French Guiana/Guadeloupe,Marchand et al. 2004
+5.34,-52.85,DT,11.08,French Guiana/Guadeloupe,Marchand et al. 2004
+5.34,-52.85,DT,16.51,French Guiana/Guadeloupe,Marchand et al. 2004
+5.34,-52.85,DT,16.99,French Guiana/Guadeloupe,Marchand et al. 2004
+5.34,-52.85,DT,19.21,French Guiana/Guadeloupe,Marchand et al. 2004
+5.34,-52.85,DT,11.95,French Guiana/Guadeloupe,Marchand et al. 2004
+5.34,-52.85,DT,11.32,French Guiana/Guadeloupe,Marchand et al. 2004
+5.34,-52.85,DT,20.72,French Guiana/Guadeloupe,Marchand et al. 2004
+5.34,-52.85,DT,17.75,French Guiana/Guadeloupe,Marchand et al. 2004
+5.34,-52.85,DT,16.95,French Guiana/Guadeloupe,Marchand et al. 2004
+5.34,-52.85,DT,11.1,French Guiana/Guadeloupe,Marchand et al. 2004
+5.34,-52.85,DT,10.72,French Guiana/Guadeloupe,Marchand et al. 2004
+5.34,-52.85,DT,11.03,French Guiana/Guadeloupe,Marchand et al. 2004
+5.34,-52.85,DT,17.59,French Guiana/Guadeloupe,Marchand et al. 2004
+5.34,-52.85,DT,12.1,French Guiana/Guadeloupe,Marchand et al. 2004
+5.34,-52.85,DT,15.53,French Guiana/Guadeloupe,Marchand et al. 2004
+5.34,-52.85,DT,16.9,French Guiana/Guadeloupe,Marchand et al. 2004
+5.34,-52.85,DT,11.95,French Guiana/Guadeloupe,Marchand et al. 2004
+5.39,-52.91,DT,19.35,French Guiana/Guadeloupe,Marchand et al. 2005
+5.39,-52.91,DT,18.46,French Guiana/Guadeloupe,Marchand et al. 2005
+5.39,-52.91,DT,15.25,French Guiana/Guadeloupe,Marchand et al. 2005
+5.39,-52.91,DT,32.91,French Guiana/Guadeloupe,Marchand et al. 2005
+5.39,-52.91,DT,11.66,French Guiana/Guadeloupe,Marchand et al. 2005
+5.35,-52.85,DT,11.28,French Guiana/Guadeloupe,Marchand et al. 2008
+5.35,-52.85,DT,29.08,French Guiana/Guadeloupe,Marchand et al. 2008
+-22.23,166.49,CT,30.08,New Caledonia,Marchand et al. 2011
+-22.23,166.49,CT,39.37,New Caledonia,Marchand et al. 2011
+-22.23,166.49,CT,47.23,New Caledonia,Marchand et al. 2011
+26.09,-81.77,ET,30.94,French Guiana,Marchio et al. 2016
+26.09,-81.77,ET,9.1,French Guiana,Marchio et al. 2016
+26.09,-81.78,ET,31.46,French Guiana,Marchio et al. 2016
+26.09,-81.78,ET,53.36,French Guiana,Marchio et al. 2016
+-18.42,146.2,ET,40.31,Australia,Matsui 1998
+-18.42,146.2,ET,31.71,Australia,Matsui 1998
+-18.42,146.2,ET,34.76,Australia,Matsui 1998
+-18.42,146.2,ET,28.82,Australia,Matsui 1998
+-18.42,146.2,ET,29.69,Australia,Matsui 1998
+-18.42,146.2,ET,21.37,Australia,Matsui 1998
+-18.42,146.2,ET,27.48,Australia,Matsui 1998
+-18.42,146.2,ET,25.47,Australia,Matsui 1998
+-18.42,146.2,ET,30.34,Australia,Matsui 1998
+-18.42,146.2,ET,29.89,Australia,Matsui 1998
+-18.42,146.2,ET,24.24,Australia,Matsui 1998
+-18.42,146.2,ET,38.81,Australia,Matsui 1998
+-18.42,146.2,ET,23.99,Australia,Matsui 1998
+-18.42,146.2,ET,24.43,Australia,Matsui 1998
+-18.42,146.2,ET,38.72,Australia,Matsui 1998
+-18.42,146.2,ET,36.74,Australia,Matsui 1998
+-18.42,146.2,ET,35.76,Australia,Matsui 1998
+-18.42,146.2,ET,34.22,Australia,Matsui 1998
+-18.42,146.2,ET,35.19,Australia,Matsui 1998
+-18.42,146.2,ET,36.77,Australia,Matsui 1998
+-18.42,146.2,ET,33.59,Australia,Matsui 1998
+-0.93,-46.7,DT,11.67,Brazil,Mehling et al. 2010
+-0.89,-46.66,DT,19.53,Brazil,Mehling et al. 2010
+-0.84,-46.64,DT,13.38,Brazil,Mehling et al. 2010
+-4.42,39.52,ET,26.11,Kenya,Middleburg et al. 1996
+-4.42,39.52,ET,29.94,Kenya,Middleburg et al. 1996
+-4.42,39.52,ET,8.1,Kenya,Middleburg et al. 1996
+-4.42,39.52,ET,10.38,Kenya,Middleburg et al. 1996
+-4.42,39.52,ET,7.87,Kenya,Middleburg et al. 1996
+-4.42,39.52,ET,15.23,Kenya,Middleburg et al. 1996
+-4.42,39.52,ET,23.94,Kenya,Middleburg et al. 1996
+-4.42,39.52,ET,34.1,Kenya,Middleburg et al. 1996
+-4.42,39.52,ET,41.63,Kenya,Middleburg et al. 1996
+-4.42,39.52,ET,29.45,Kenya,Middleburg et al. 1996
+-4.42,39.52,ET,30.68,Kenya,Middleburg et al. 1996
+-4.42,39.52,ET,45.31,Kenya,Middleburg et al. 1996
+-4.42,39.52,ET,11.53,Kenya,Middleburg et al. 1996
+-4.42,39.52,ET,16.82,Kenya,Middleburg et al. 1996
+-4.42,39.52,ET,20.84,Kenya,Middleburg et al. 1996
+-4.42,39.52,ET,26.69,Kenya,Middleburg et al. 1996
+10.48,106.94,DT,28.03,Vietnam,Nam et al. 2016
+8.65,105.11,DT,27.78,Vietnam,Nam et al. 2016
+-2.84,-40.14,ET,28.85,Brazil,Nóbrega et al. 2013
+-2.84,-40.14,ET,27.71,Brazil,Nóbrega et al. 2013
+-2.84,-40.14,ET,16.15,Brazil,Nóbrega et al. 2013
+-2.84,-40.14,ET,18.77,Brazil,Nóbrega et al. 2013
+-4.44,-37.78,ET,21.06,Brazil,Nóbrega et al. 2016
+-3.78,-38.44,ET,20.82,Brazil,Nóbrega et al. 2016
+-2.95,-41.25,ET,37.37,Brazil,Nóbrega et al. 2016
+4.04,9.63,ET,36.39,Cameroon,Ntyam 2014
+3.56,10.13,ET,27.65,Cameroon,Ntyam 2014
+3.56,10.13,ET,22.66,Cameroon,Ntyam 2014
+5.81,0.62,DT,20.21,Ghana,Ntyam 2014
+5.81,0.62,DT,28.03,Ghana,Ntyam 2014
+5.81,0.62,DT,25.37,Ghana,Ntyam 2014
+6.88,158.33,CT,54.24,Fed. States of Micronesia,Ono et al. 2015
+27.75,-82.45,ET,25.6,USA,Osland et al. 2012
+-25.08,-47.94,ET,18.53,Brazil,Otero et al. 2014
+4.95,115.22,DT,16.24,Malaysia,Pazi et al. 2016
+4.95,115.22,DT,18.08,Malaysia,Pazi et al. 2016
+4.95,115.22,DT,20.06,Malaysia,Pazi et al. 2016
+4.95,115.22,DT,25.97,Malaysia,Pazi et al. 2016
+4.95,115.22,DT,18.71,Malaysia,Pazi et al. 2016
+4.95,115.22,DT,18.6,Malaysia,Pazi et al. 2016
+8.3,79.84,DT,83.61,Sri Lanka,Perera & Amarasinghe 2016
+1.41,103.96,ET,32.97,Singapore,Phang et al. 2015
+21.95,89.41,DT,13.61,Bangladesh,Rahman et al. 2015
+21.95,89.41,DT,12.5,Bangladesh,Rahman et al. 2015
+21.95,89.41,DT,13.06,Bangladesh,Rahman et al. 2015
+21.95,89.41,DT,12.78,Bangladesh,Rahman et al. 2015
+21.95,89.41,DT,9.17,Bangladesh,Rahman et al. 2015
+21.95,89.41,DT,10.83,Bangladesh,Rahman et al. 2015
+21.95,89.41,DT,12.78,Bangladesh,Rahman et al. 2015
+21.95,89.41,DT,7.22,Bangladesh,Rahman et al. 2015
+21.95,89.41,DT,9.17,Bangladesh,Rahman et al. 2015
+11.38,79.75,DT,15.57,India,Ranjan et al. 2010
+11.38,79.75,DT,14.1,India,Ranjan et al. 2010
+11.38,79.75,DT,16.87,India,Ranjan et al. 2010
+11.38,79.75,DT,15.63,India,Ranjan et al. 2011
+11.38,79.75,DT,13.78,India,Ranjan et al. 2011
+11.38,79.75,DT,17.35,India,Ranjan et al. 2011
+21.68,88.33,DT,16.23,India,Ray et al. 2011
+21.68,88.33,DT,16.35,India,Ray et al. 2011
+21.68,88.33,DT,12.85,India,Ray et al. 2011
+9.34,-75.88,DT,21.16,Colombia,Ruiz-Fernandez et al. 2011
+20.39,86.76,DT,18.1,India,Sahu et al. 2016
+14.49,-17.08,ET,8.9,Senegal,Sakho et al. 2015
+14.49,-17.08,ET,18.89,Senegal,Sakho et al. 2015
+-25.3,-48.39,ET,42.95,Brazil,Sanders et al. 2008
+-8.68,-35.11,ET,68.13,Brazil,Sanders et al. 2010a
+-8.68,-35.11,ET,54.2,Brazil,Sanders et al. 2010a
+-25.3,-48.39,ET,32,Brazil,Sanders et al. 2010b
+-25.3,-48.39,ET,29.79,Brazil,Sanders et al. 2010b
+-27.35,153.1,ET,21.24,Australia,Sanders et al. 2016
+-21.71,165.82,ET,22.02,Australia,Sanders et al. 2016
+-20.18,34.75,DT,16,Mozambique,Sitoe et al. 2014
+26.03,-81.75,CT,40.33,USA,Steyer 1988
+26.03,-81.75,CT,42.99,USA,Steyer 1988
+-18.83,36.26,DT,14.84,Mozambique,Stringer et al. 2015
+-18.83,36.26,DT,15.25,Mozambique,Stringer et al. 2015
+-18.83,36.26,DT,15.32,Mozambique,Stringer et al. 2015
+-18.83,36.26,DT,15.73,Mozambique,Stringer et al. 2015
+-18.83,36.26,DT,16.5,Mozambique,Stringer et al. 2015
+19.95,106.01,DT,14.64,Vietnam,Tateda et al. 2005
+24.4,124.15,CT,31.93,Japan,Tateda et al. 2005
+12.2,102.55,ET,9.75,Thailand,Tateda et al. 2005
+11.82,122.15,DT,24.06,Philippines,Thompson et al. 2014
+11.82,122.15,DT,23.61,Philippines,Thompson et al. 2014
+11.82,122.15,DT,11.84,Philippines,Thompson et al. 2014
+11.07,122.96,ET,9.01,Philippines,Thompson et al. 2014
+11.07,122.96,ET,9.23,Philippines,Thompson et al. 2014
+11.07,122.96,ET,9.93,Philippines,Thompson et al. 2014
+8.7,104.83,DT,15.75,Vietnam,Tue et al. 2014
+8.7,104.83,DT,20.91,Vietnam,Tue et al. 2014
+8.7,104.83,DT,17.95,Vietnam,Tue et al. 2014
+26.03,-81.75,CT,50.23,USA,Twilley et al. 1986
+26.03,-81.75,CT,55.27,USA,Twilley et al. 1986
+-2.45,-79.69,ET,28.78,Ecuador,Twilley et al. 1997
+-2.44,-79.69,ET,26.29,Ecuador,Twilley et al. 1997
+-2.43,-79.69,ET,36.91,Ecuador,Twilley et al. 1997
+4.94,8.27,ET,42.92,Nigeria,"Ukpong 1995, 2000"
+4.94,8.27,ET,72.98,Nigeria,"Ukpong 1995, 2000"
+4.94,8.27,ET,48.24,Nigeria,"Ukpong 1995, 2000"
+4.94,8.27,ET,48.97,Nigeria,"Ukpong 1995, 2000"
+4.94,8.27,ET,34.2,Nigeria,"Ukpong 1995, 2000"
+4.94,8.27,ET,82.8,Nigeria,"Ukpong 1995, 2000"
+12.29,-16.25,DT,27.25,Guinea-Bissau,Vasconcelos et al. 2015
+9.8107,-61.79,DT,42.67,Venezuela,Vegas-Vilarrubia et al. 2010
+21.57,109.75,ET,13.16,China,Wang et al. 2013
+21.56,109.75,ET,23.79,China,Wang et al. 2013
+21.57,109.76,ET,22.9,China,Wang et al. 2013
+21.55,109.77,ET,26.68,China,Wang et al. 2013
+21.54,109.78,ET,23.6,China,Wang et al. 2013
+-23.01,-43.61,LG,19.68,Brazil,Wasserman et al. 2001
+-23.01,-43.61,LG,26.09,Brazil,Wasserman et al. 2001
+-7.68,108.79,ET,7.38,Indonesia,Weiss et al. 2016
+-7.71,108.89,ET,9.24,Indonesia,Weiss et al. 2016
+2.12,117.63,DT,38.3,Indonesia,Weiss et al. 2016
+2.05,117.81,DT,14.03,Indonesia,Weiss et al. 2016
+2.17,117.93,DT,10.25,Indonesia,Weiss et al. 2016
+-0.39,122.05,CT,61.8,Indonesia,Weiss et al. 2016
+-0.39,122.06,CT,51.82,Indonesia,Weiss et al. 2016
+-0.39,122.06,CT,33.9,Indonesia,Weiss et al. 2016
+-0.39,122.06,CT,32.79,Indonesia,Weiss et al. 2016
+29.14,-83.03,ET,13.7,USA,Yando et al. 2016
+29.11,-90.2,DT,24.3,USA,Yando et al. 2016
+27.86,-97.07,ET,29,USA,Yando et al. 2016
+-36.88,174.69,BR,8.2,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,9.94,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,15.1,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,9.82,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,29.03,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,27.1,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,24.23,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,24.85,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,26.86,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,30.31,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,23.86,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,25.25,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,24.88,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,29.55,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,24.51,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,23.46,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,23.39,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,30.47,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,24.06,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,23.6,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,21.6,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,22.92,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,19.95,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,22.33,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,21.24,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,19.92,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,22.34,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,22.05,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,20.71,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,19.02,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,18.85,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,17.71,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,18.34,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,25.5,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,25.07,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,27.33,New Zealand,Yang et al. 2013
+-36.88,174.69,BR,23.35,New Zealand,Yang et al. 2013

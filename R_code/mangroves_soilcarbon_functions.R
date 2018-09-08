@@ -14,7 +14,7 @@ hor2xyd = function(x, U="UHDICM", L="LHDICM", treshold.T=15){
 }
 
 ## expand tiles for 1-2pix ----
-fill.NA.cells <- function(i, tiles, var="MNGUSG_30m", out.path="/data/mangroves/tiled/"){
+fill.NA.cells <- function(i, tiles, var="TYPO_30m", out.path="/data/mangroves/tiled/"){
   out.tif = paste0(out.path, "T", tiles@data[i,"ID"], "/", var, "f_T", tiles@data[i,"ID"], ".tif")
   if(!file.exists(out.tif)){
     m = readGDAL(paste0(out.path, "/T", tiles@data[i,"ID"], "/", var, "_T", tiles@data[i,"ID"], ".tif"), silent = TRUE)
@@ -26,11 +26,15 @@ fill.NA.cells <- function(i, tiles, var="MNGUSG_30m", out.path="/data/mangroves/
 }
 
 ## tile shapes ----
-tile_shape = function(i, shape="./DownloadPack-WCMC-010-MangroveUSGS2011-Ver1-3/WCMC-010-MangroveUSGS2011-ver1-3.shp", l="WCMC-010-MangroveUSGS2011-ver1-3", out.dir="/data/mangroves/tiled/", tr=0.00025, varname="MNGUSG", res.name="30m"){
+tile_shape = function(i, shape, l, out.dir="/data/mangroves/tiled/", tr=0.00025, varname, res.name="30m", burn=TRUE, value.col="Value"){
   out.tif = paste0(out.dir, 'T', ov_mangroves@data[i,"ID"], '/', varname, '_', res.name, '_T', ov_mangroves@data[i,"ID"], '.tif')
   if(!file.exists(out.tif)){
     te = paste(unlist(ov_mangroves@data[i,c("xl","yl","xu","yu")]), collapse = " ")
-    system(paste0('gdal_rasterize ', shape, ' -l ',  l, ' -te ', te, ' -tr ', tr, ' ', tr, ' -ot Byte ', ' -burn 100 ', out.tif, ' -a_nodata 0 -co \"COMPRESS=DEFLATE\"'))
+    if(burn==TRUE){
+      system(paste0('gdal_rasterize ', shape, ' -l ',  l, ' -te ', te, ' -tr ', tr, ' ', tr, ' -ot Byte ', ' -burn 100 ', out.tif, ' -a_nodata 0 -co \"COMPRESS=DEFLATE\"'), ignore.stdout=TRUE)
+    } else {
+      system(paste0('gdal_rasterize ', shape, ' -l ',  l, ' -te ', te, ' -tr ', tr, ' ', tr, ' -ot Byte ', ' -a ', value.col, ' ', out.tif, ' -a_nodata 255 -co \"COMPRESS=DEFLATE\"'), ignore.stdout=TRUE)
+    }
   }
 }
 
@@ -38,35 +42,38 @@ tile_shape = function(i, shape="./DownloadPack-WCMC-010-MangroveUSGS2011-Ver1-3/
 tile_tif <- function(i, vrt="/mnt/cartman/GlobalForestChange2000-2014/first.vrt", name=c("REDL00","NIRL00","SW1L00","SW2L00"), out.dir="/data/mangroves/tiled/", tr=0.00025, type="Byte", mvFlag=255, fix.mask=TRUE){
   out.tif = paste0(out.dir, "T", ov_mangroves@data[i,"ID"], "/", name, "_30m_T", ov_mangroves@data[i,"ID"], ".tif")
   if(any(!file.exists(out.tif))){
-    tmp.file = paste0(tempfile(), ".tif")
-    te = paste(unlist(ov_mangroves@data[i,c("xl","yl","xu","yu")]), collapse = " ")
-    system(paste0('gdalwarp ', vrt, ' ', tmp.file, ' -r \"near\" -te ', te, ' -tr ', tr, ' ', tr))
-    r = readGDAL(tmp.file)
-    if(fix.mask==TRUE){
-      r$mask = readGDAL(paste0(out.dir, "T", ov_mangroves@data[i,"ID"], "/MNGUSG_30mf_T", ov_mangroves@data[i,"ID"], ".tif"))$band1
-      for(k in 1:length(name)){
-        r$fix = ifelse(is.na(r$mask), NA, r@data[,k])
-        writeGDAL(r["fix"], drivername="GTiff", type=type, mvFlag=mvFlag, out.tif[k], options=c("COMPRESS=DEFLATE"))
+    mask.tif = paste0(out.dir, "T", ov_mangroves@data[i,"ID"], "/TYPO_30m_T", ov_mangroves@data[i,"ID"], ".tif")
+    if(file.exists(mask.tif)){
+      tmp.file = paste0(tempfile(), ".tif")
+      te = paste(unlist(ov_mangroves@data[i,c("xl","yl","xu","yu")]), collapse = " ")
+      system(paste0('gdalwarp ', vrt, ' ', tmp.file, ' -r \"near\" -te ', te, ' -tr ', tr, ' ', tr), ignore.stdout=TRUE)
+      r = readGDAL(tmp.file)
+      if(fix.mask==TRUE){
+        r$mask = readGDAL(mask.tif, silent=TRUE)$band1
+        for(k in 1:length(name)){
+          r$fix = ifelse(is.na(r$mask), NA, r@data[,k])
+          writeGDAL(r["fix"], drivername="GTiff", type=type, mvFlag=mvFlag, out.tif[k], options=c("COMPRESS=DEFLATE"))
+        }
+      } else {
+        for(k in 1:length(name)){
+          writeGDAL(r[k], drivername="GTiff", type=type, mvFlag=mvFlag, out.tif[k], options=c("COMPRESS=DEFLATE"))
+        }
       }
-    } else {
-      for(k in 1:length(name)){
-        writeGDAL(r[k], drivername="GTiff", type=type, mvFlag=mvFlag, out.tif[k], options=c("COMPRESS=DEFLATE"))
-      }
+      unlink(tmp.file)
+      gc(); gc()
     }
-    unlink(tmp.file)
-    gc(); gc()
   }
 }
 
 
 ## dowscale function ----
-downscale_tif <- function(i, vrt, name, tiles, out.dir="/data/mangroves/tiled/", tr=0.00025, type="Int16", mvFlag=-32768, cpus=48, fill.gaps.coarse=FALSE, fill.gaps.method="resampling"){
+downscale_tif <- function(i, vrt, name, tiles, out.dir="/data/mangroves/tiled/", tr=0.00025, type="Int16", mvFlag=-32768, cpus=64, fill.gaps.coarse=FALSE, fill.gaps.method="resampling"){
   out.tif = paste0(out.dir, "T", tiles@data[i,"ID"], "/", name, "_30m_T", tiles@data[i,"ID"], ".tif")
   if(any(!file.exists(out.tif))){
     if(fill.gaps.coarse==TRUE){
-      maskTile = paste0('/data/mangroves/tiled/T', ov_mangroves@data[i,"ID"], '/MNGUSG_250m_T', ov_mangroves@data[i,"ID"], '.sgrd')
+      maskTile = paste0('/data/mangroves/tiled/T', ov_mangroves@data[i,"ID"], '/TYPO_250m_T', ov_mangroves@data[i,"ID"], '.sgrd')
     } else { 
-      maskTile = paste0('/data/mangroves/tiled/T', ov_mangroves@data[i,"ID"], '/MNGUSG_30mf_T', ov_mangroves@data[i,"ID"], '.sgrd')
+      maskTile = paste0('/data/mangroves/tiled/T', ov_mangroves@data[i,"ID"], '/TYPO_30m_T', ov_mangroves@data[i,"ID"], '.sgrd')
     }
     tmp.file = paste0(tempfile(), ".sdat")
     te = paste(unlist(tiles@data[i,c("xl","yl","xu","yu")]), collapse = " ")
@@ -87,9 +94,9 @@ downscale_tif <- function(i, vrt, name, tiles, out.dir="/data/mangroves/tiled/",
     if(file.size(tmp.file2)>0){
       s = readGDAL(tmp.file2, silent=TRUE)
       if(fill.gaps.coarse==TRUE){ 
-        s$mask = readGDAL(paste0(out.dir, "T", ov_mangroves@data[i,"ID"], "/MNGUSG_250m_T", ov_mangroves@data[i,"ID"], ".tif"))$band1
+        s$mask = readGDAL(paste0(out.dir, "T", ov_mangroves@data[i,"ID"], "/TYPO_250m_T", ov_mangroves@data[i,"ID"], ".tif"))$band1
       } else {
-        s$mask = readGDAL(paste0(out.dir, "T", ov_mangroves@data[i,"ID"], "/MNGUSG_30mf_T", ov_mangroves@data[i,"ID"], ".tif"))$band1
+        s$mask = readGDAL(paste0(out.dir, "T", ov_mangroves@data[i,"ID"], "/TYPO_30m_T", ov_mangroves@data[i,"ID"], ".tif"))$band1
       }
       s$fix = ifelse(is.na(s$mask), NA, s$band1)
       if(is.numeric(s$fix)){
@@ -110,20 +117,21 @@ downscale_tif <- function(i, vrt, name, tiles, out.dir="/data/mangroves/tiled/",
 }
 
 ## prepare new data ----
-new_data <- function(i, in.covs, tiles, out.dir="/data/mangroves/tiled"){
+new_data <- function(i, mask, in.covs, tiles, out.dir="/data/mangroves/tiled"){
   out.rds <- paste0(out.dir, "/T", tiles@data[i,"ID"], "/T", tiles@data[i,"ID"], ".rds")
   if(!file.exists(out.rds)){
-    m = readGDAL(paste0(out.dir, "/T", tiles@data[i,"ID"], "/", in.covs[1], "_T", tiles@data[i,"ID"], ".tif"), silent = TRUE)
+    m = readGDAL(paste0(out.dir, "/T", tiles@data[i,"ID"], "/", mask, "_T", tiles@data[i,"ID"], ".tif"), silent = TRUE)
     m = as(m, "SpatialPixelsDataFrame")
-    for(j in 2:length(in.covs)){
-      in.tif = paste0(out.dir, "/T", tiles@data[i,"ID"], "/", in.covs[j], "_T", tiles@data[i,"ID"], ".tif")
+    l.covs = in.covs[-which(in.covs %in% mask)]
+    for(j in 1:length(l.covs)){
+      in.tif = paste0(out.dir, "/T", tiles@data[i,"ID"], "/", l.covs[j], "_T", tiles@data[i,"ID"], ".tif")
       if(!file.exists(in.tif)){
-        m@data[,j] = 0
+        m@data[,j+1] = 0
       } else {
-        m@data[,j] = readGDAL(in.tif, silent = TRUE)$band1[m@grid.index]
+        m@data[,j+1] = readGDAL(in.tif, silent = TRUE)$band1[m@grid.index]
       }
     }
-    names(m) = in.covs
+    names(m) = c(mask, l.covs)
     ## Filter out water bodies:
     m = m[m$NIRL00_30m>10,]
     ## Fill-in remaining missing values (can be very tricky):
@@ -156,24 +164,29 @@ new_data <- function(i, in.covs, tiles, out.dir="/data/mangroves/tiled"){
 }
 
 ## predict at all locations at 30 m ----
-predict_x <- function(i, tiles, gm, year="00", depths=c(0,30,100,200), out.dir="/data/mangroves/tiled", with.se=FALSE){
+predict_x <- function(i, tiles, gm, year="00", depths=c(0,30,100,200), out.dir="/data/mangroves/tiled", with.se=FALSE, factor.c="TYPO_30m", type="sl", num.threads = 3){
   out.tif = paste0(out.dir, "/T", tiles@data[i,"ID"], "/OCDENS_", depths, "_year20", year, "_30m_T", tiles@data[i,"ID"], ".tif")
   if(any(!file.exists(out.tif)) | !file.exists(paste0(out.dir, "/T", tiles@data[i,"ID"], "/dSOCS_0_100cm_year20", year, "_30m_T", tiles@data[i,"ID"], ".tif"))){
+    require(rgdal)
+    require(SuperLearner)
     m <- readRDS(paste0(out.dir, "/T", tiles@data[i,"ID"], "/T", tiles@data[i,"ID"], ".rds"))
-    names(m) = gsub(paste0("L",year,"_30m"), "_30m", names(m))
-    if(year=="00"){ names(m) <- gsub("a2000mfw_30m", "mfw_30m", names(m)) }
-    if(year=="14"){ names(m) <- gsub("a2012mfw_30m", "mfw_30m", names(m)) }
+    if(!is.null(factor.c)){
+      m = m[!is.na(m@data[,factor.c]),]
+      m@data[,factor.c] <- factor(m@data[,factor.c], levels=1:4)
+      m.i = model.matrix(as.formula(paste0("~", factor.c, "-1")), m@data)
+      new.data = cbind(m@data, data.frame(m.i))
+    }
     for(j in 1:length(depths)){
-      m$DEPTH = depths[j]
+      new.data$DEPTH = depths[j]
       if(any(class(gm)=="list")){
         xpl = list(NULL)
         for(i in 1:length(gm)){
-          xpl[[i]] = predict(gm[[i]], m@data)$predictions
+          xpl[[i]] = predict(gm[[i]], new.data)$predictions
         }
         m@data[,paste0("OCDENS_",j)] = rowMeans(data.frame(xpl))
       } else {
         if(any(class(gm)=="randomForest")){
-          m@data[,paste0("OCDENS_",j)] = predict(gm, m@data)
+          m@data[,paste0("OCDENS_",j)] = predict(gm, new.data)
         } else {
           if(with.se==TRUE){
             ## Too computational at the moment
@@ -186,7 +199,11 @@ predict_x <- function(i, tiles, gm, year="00", depths=c(0,30,100,200), out.dir="
             m@data[,paste0("OCDENS_",j,".L")] = ifelse(x[,1]<0, 0, x[,1])
             m@data[,paste0("OCDENS_",j,".U")] = x[,3]
           } else {
-            m@data[,paste0("OCDENS_",j)] = predict(gm, m@data)$predictions 
+            if(type=="sl"){
+              m@data[,paste0("OCDENS_",j)]  <- predict(gm, new.data[,gm$varNames], onlySL = TRUE, num.threads = num.threads)$pred[,1]
+            } else {
+              m@data[,paste0("OCDENS_",j)] <- predict(gm, new.data)$predictions 
+            }
           }
         }
       }
