@@ -168,7 +168,7 @@ sfInit(parallel=TRUE, cpus=64)
 sfExport("downscale_tif", "ov_mangroves")
 sfLibrary(rgdal)
 sfLibrary(RSAGA)
-out <- sfClusterApplyLB(1:nrow(ov_mangroves), function(i){ try( downscale_tif(i, vrt="/mnt/DATA/LDN/OCSTHA_M_30cm_300m_ll.tif", name="SOCS_0_30cm", tiles=ov_mangroves, cpus=1, fill.gaps.method="resampling") , silent = TRUE )})
+out <- sfClusterApplyLB(1:nrow(ov_mangroves), function(i){ try( downscale_tif(i, vrt="/mnt/DATA/LDN/OCSTHA_M_30cm_300m_ll.tif", name="SOCS_0_30cm", tiles=ov_mangroves, cpus=1, fill.gaps.method="spline") , silent = TRUE )})
 sfStop()
 
 ## Tidal range ----
@@ -292,7 +292,7 @@ in.covs = paste(sapply(in.covs, function(i){strsplit(i, "_T")[[1]][1]}))
 #del.lst = list.files("/data/mangroves/tiled", pattern=glob2rx("T*.rds$"), full.names=TRUE, recursive=TRUE)
 #unlink(del.lst)
 #new_data(i=which(ov_mangroves$ID=="28356"), mask="TYPO_30m", in.covs, tiles=ov_mangroves)
-#m = readRDS("/data/mangroves/tiled/T28356/T28356.rds")
+#m = readRDS("/data/mangroves/tiled/T31029/T31029.rds")
 #x = readGDAL("/data/mangroves/tiled/T28356/TYPO_30m_T28356.tif")
 #plot(m["TYPO_30m"])
 
@@ -364,6 +364,7 @@ print(t(data.frame(xl[order(unlist(xl), decreasing=TRUE)[1:10]])))
 # SST_3_30m         64882.69
 
 ## Fit ensamble model ----
+## TH: the right way to do it!
 ## https://cran.r-project.org/web/packages/SuperLearner/vignettes/Guide-to-SuperLearner.html#multicore-parallelization
 ## Use location of point so that the training is realistic:
 ## folds per tile - very important otherwise over-optimistic predictions!
@@ -379,14 +380,13 @@ library(parallel)
 library(SuperLearner)
 cl <- parallel::makeCluster(64)
 x <- parallel::clusterEvalQ(cl, library(SuperLearner))
-sl <- snowSuperLearner(Y = rmatrix.f$OCDENS, X = rmatrix.f[,all.vars(fm.OCDENS)[-1]], cluster = cl, SL.library = c("SL.xgboost", "SL.glmnet", "SL.ranger"), id=id.d$ID, cvControl=list(V=10))
+## fitting with 10-fold cross-validation included
+sl <- snowSuperLearner(Y = rmatrix.f$OCDENS, X = rmatrix.f[,all.vars(fm.OCDENS)[-1]], cluster = cl, SL.library = c("SL.xgboost","SL.glmnet", "SL.ranger"), id=id.d$ID, cvControl=list(V=10))
 sl
 # Risk      Coef
-# SL.xgboost_All 192.3741 0.1314315
-# SL.gam_All     187.3369 0.0000000
-# SL.ksvm_All    188.9983 0.3171007
-# SL.glmnet_All  180.7056 0.2995112
-# SL.ranger_All  179.4344 0.2519566
+# SL.xgboost_All 175.6226 0.3885847
+# SL.glmnet_All  182.9464 0.2702721
+# SL.ranger_All  175.8531 0.3411432
 
 ## Cross-validation ----
 cv_sl <- CV.SuperLearner(Y = rmatrix.f$OCDENS, X = rmatrix.f[,all.vars(fm.OCDENS)[-1]], parallel = cl, SL.library = c("SL.xgboost","SL.glmnet","SL.ranger"), V=10, id=id.d$ID, verbose=TRUE)
@@ -407,7 +407,8 @@ summary(cv_sl)
 stopCluster(cl)
 
 ## clean up:
-# del.lst = list.files("/data/mangroves/tiled", pattern=glob2rx("OCDENS_*.tif$"), full.names=TRUE, recursive=TRUE)
+#del.lst = list.files("/data/mangroves/tiled", pattern=glob2rx("OCDENS_*.tif$"), full.names=TRUE, recursive=TRUE)
+#unlink(del.lst)
 #del.lst = list.files("/data/mangroves/tiled", pattern=glob2rx("SOCS_0_30cm_30m_*.tif$"), full.names=TRUE, recursive=TRUE)
 #unlink(del.lst)
 # del.lst = list.files("/data/mangroves/tiled", pattern=glob2rx("dSOCS_0_*00cm_*.tif$"), full.names=TRUE, recursive=TRUE)
@@ -415,10 +416,10 @@ stopCluster(cl)
 
 ## Predictions ----
 #predict_x(i=which(ov_mangroves$ID=="31419"), tiles=ov_mangroves, gm=sl)
-#predict_x(i=which(ov_mangroves$ID=="31419"), tiles=ov_mangroves, gm=m.OCDENS_30m)
-#predict_x(i=which(ov_mangroves$ID=="31420"), tiles=ov_mangroves, gm=m.OCDENS_30m)
-#predict_x(i=which(ov_mangroves$ID=="24778"), tiles=ov_mangroves, gm=m.OCDENS_30m)
-#predict_x(i=which(ov_mangroves$ID=="26085"), tiles=ov_mangroves, gm=m.OCDENS_30m)
+#predict_x(i=which(ov_mangroves$ID=="31029"), tiles=ov_mangroves, gm=sl)
+#predict_x(i=which(ov_mangroves$ID=="31420"), tiles=ov_mangroves, gm=sl)
+#predict_x(i=which(ov_mangroves$ID=="24778"), tiles=ov_mangroves, gm=sl)
+#predict_x(i=which(ov_mangroves$ID=="26085"), tiles=ov_mangroves, gm=sl)
 
 library(snowfall)
 snowfall::sfInit(parallel=TRUE, cpus=24)
@@ -434,6 +435,7 @@ snowfall::sfStop()
 
 ## export mosaic:
 t.lst <- list.files("/data/mangroves/tiled", pattern=glob2rx("dSOCS_0_100cm_*.tif$"), full.names=TRUE, recursive=TRUE)
+#x = file.copy(t.lst, paste0("/data/tmp/mangroves_SOC30m/", basename(t.lst)), overwrite = TRUE)
 x = file.copy(t.lst, paste0("/data/mangroves_SOC30m/", basename(t.lst)), overwrite = TRUE)
 out.tmp <- "/data/mangroves_SOC30m/t_list.txt"
 vrt.tmp <- "/data/mangroves_SOC30m/mangroves_dSOC_0_100cm_30m.vrt"
