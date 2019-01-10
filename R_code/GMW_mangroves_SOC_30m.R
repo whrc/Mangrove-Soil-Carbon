@@ -3,6 +3,7 @@
 ## R code by: tom.hengl@envirometrix.net
 
 ## Software and functions ----
+load(".RData")
 library(rgdal)
 library(foreign)
 library(raster)
@@ -219,7 +220,7 @@ for(j in 1:length(tsm_f.lst)){
 profs <- read.csv("./soildata/mangrove_soc_database_v10_sites.csv", skip = 1)
 str(profs)
 summary(is.na(profs$Latitude_Adjusted))
-profs.f <- plyr::rename(profs, c("Site.name"="SOURCEID", "Longitude_Adjusted"="LONWGS84", "Latitude_Adjusted"="LATWGS84"))
+profs.f <- plyr::rename(profs, c("Site.name"="SOURCEID", "Longitude_Adjusted"="LONWGS84", "Latitude_Adjusted"="LATWGS84", "OK.to.release."="SHARING"))
 profs.f$TIMESTRR <- as.Date(profs.f$Years_collected, format="%Y")
 profs.f$SOURCEDB = "MangrovesDB"
 profs.f$LONWGS84 = as.numeric(paste(profs.f$LONWGS84))
@@ -255,7 +256,7 @@ summary(hors.fs$OCDENS)
 #Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
 #   0.00   15.00   26.00   29.41   42.00  134.00       2
 ## 14780 values now
-profs.ALL <- plyr::rbind.fill(profs.f[,c("SOURCEID","SOURCEDB","TIMESTRR","LONWGS84","LATWGS84")], profsA.f[,c("SOURCEID","SOURCEDB","LONWGS84","LATWGS84")])
+profs.ALL <- plyr::rbind.fill(profs.f[,c("SOURCEID","SOURCEDB","TIMESTRR","LONWGS84","LATWGS84","SHARING")], profsA.f[,c("SOURCEID","SOURCEDB","LONWGS84","LATWGS84")])
 hors.ALL <- plyr::rbind.fill(hors.fs[,c("SOURCEID","UHDICM","LHDICM","DEPTH","BLD.f","ORCDRC","OCDENS")], horsA[,c("SOURCEID","UHDICM","LHDICM","DEPTH","OCDENS")])
 
 ## Merge everything together
@@ -265,9 +266,28 @@ str(SPROPS.MangrovesDB[which(SPROPS.MangrovesDB$LATWGS84 > 60),])
 SPROPS.MangrovesDB = SPROPS.MangrovesDB[!is.na(SPROPS.MangrovesDB$LONWGS84) & !is.na(SPROPS.MangrovesDB$LATWGS84) & !is.na(SPROPS.MangrovesDB$DEPTH),]
 SPROPS.MangrovesDB = SPROPS.MangrovesDB[!SPROPS.MangrovesDB$DEPTH>1000,]
 str(SPROPS.MangrovesDB)
+#saveRDS(SPROPS.MangrovesDB, "/data/Soil_points/INT/TNC_mangroves/SPROPS.MangrovesDB.rds")
 ## 'data.frame':	14907 obs. of  11 variables
 hist(SPROPS.MangrovesDB$DEPTH)
 summary(is.na(SPROPS.MangrovesDB$DEPTH)); summary(is.na(SPROPS.MangrovesDB$OCDENS))
+summary(SPROPS.MangrovesDB$SHARING)
+# 279 
+# N 
+# 1332 
+# N, but can be accessed directly from the FS-DAC 
+# 481 
+# unsure 
+# 486 
+# Y 
+# 10079 
+# Y, but no coordinates 
+# 105 
+# Y, w fuzzy location 
+# 294 
+# Y, with fuzzy location 
+# 1711 
+# NA's 
+#                                             551
 
 coordinates(SPROPS.MangrovesDB) = ~LONWGS84+LATWGS84
 proj4string(SPROPS.MangrovesDB) = CRS("+proj=longlat +datum=WGS84")
@@ -276,7 +296,10 @@ SPROPS.MangrovesDB$LOC_ID = as.factor(paste0("ID", SPROPS.MangrovesDB@coords[,1]
 length(levels(unique(SPROPS.MangrovesDB$LOC_ID)))
 ## 1918 profiles in total
 unlink("./soildata/mangroves_SOC_points.gpkg")
-writeOGR(SPROPS.MangrovesDB, "./soildata/mangroves_SOC_points.gpkg", "mangroves_SOC_points", "GPKG")
+## subset to points for sharing only:
+sel = c(grep("Y", SPROPS.MangrovesDB$SHARING), which(is.na(SPROPS.MangrovesDB$SHARING)))
+length(sel)
+writeOGR(SPROPS.MangrovesDB[sel,], "./soildata/mangroves_SOC_points.gpkg", "mangroves_SOC_points", "GPKG")
 summary(as.factor(SPROPS.MangrovesDB$SOURCEDB))
 #ESM MangrovesDB 
 #551       14767 
